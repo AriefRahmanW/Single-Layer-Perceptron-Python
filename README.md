@@ -38,7 +38,6 @@ pip install -r requirements.txt
 change this part as you wish...
 
 ```python
-[...]
 training, testing = ConvertTxtToDataset(
     filename="dataset_batang.txt"
 ).getSinglePerceptronDataset(
@@ -47,11 +46,14 @@ training, testing = ConvertTxtToDataset(
     y=(('Batang-pepaya', 0.0), ('Batang-pisang', 1.0)), # Output class, choose two class
     percentage=80 # saperate data into 80% training and 20% testing 
 )
-[...]
 ```
+
+Your data will be like this <br/>
+
 **training data**
 
 ```
+Bias  x1    x2    y
 (1.0, 1.18, 1.82, 0.0)
 (1.0, 3.76, 8.12, 0.0)
 (1.0, 3.66, 8.04, 0.0)
@@ -96,6 +98,7 @@ training, testing = ConvertTxtToDataset(
 
 **testing data**
 ```
+Bias  x1    x2    y
 (1.0, 2.88, 6.74, 0.0)
 (1.0, 1.12, 1.87, 0.0)
 (1.0, 1.43, 2.07, 0.0)
