@@ -20,6 +20,6 @@ class :
 this dataset is gotten by using GLCM(texture analyst method)
 
 0 deg | 45 deg | 90 deg | 135 deg | Class
------ | ------ | ------ | -------
+----- | ------ | ------ | ------- | -----
 11750114.13 | 11618426.39 | 18167705.75 | 11527839.21 | Batang-pepaya
 
