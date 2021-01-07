@@ -11,8 +11,8 @@ pip install -r requirements.txt
 ## Data Model
 
 ### dataset_batang.txt
-total data : 75
-class : 
+total data : 75 \n
+total class : 3
 - Batang-pisang = 25 data
 - Batang-jambu = 25 data
 - Batang-pepaya = 25 data
@@ -24,8 +24,8 @@ this dataset is gotten by using GLCM(texture analyst method)
 11750114.13 | 11618426.39 | 18167705.75 | 11527839.21 | Batang-pepaya
 
 ### dataset_iris.txt
-total data : 150
-class : 
+total data : 150 \n
+total class : 3
 - Iris-setosa = 50 data
 - Iris-versicolor = 50 data
 - Iris-virginia = 50 data
