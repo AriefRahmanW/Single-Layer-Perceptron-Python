@@ -75,5 +75,5 @@ traning, testing = ConvertTxtToDataset(
     percentage=80 # mengambil 80% sebagai training dan 20% testing
 )
 
-for i in traning:
+for i in testing:
     print(i)
