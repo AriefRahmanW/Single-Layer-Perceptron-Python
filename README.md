@@ -1,13 +1,5 @@
 # Single Layer Perceptron Using Python Usage Guide
 
-## Get Started
-
-install depedencies...
-
-```bash
-pip install -r requirements.txt
-```
-
 ## Data Model
 
 ### dataset_batang.txt
@@ -36,9 +28,22 @@ No | sepal length | sepal width | petal length | petal width | Class
 -- | ------------ | ----------- | ------------ | ----------- | -----
 1 | 5.1 | 3.5 | 1.4 | 0.2 | Iris-setosa
 
-## Usage Description
+## Get Started
+
+install depedencies...
+
+```bash
+pip install -r requirements.txt
+```
 
 ```python
+[...]
+from convert import ConvertTxtToDataset
+[...]
+```
+
+```python
+[...]
 training, testing = ConvertTxtToDataset(
     filename="dataset_batang.txt"
 ).getSinglePerceptronDataset(
@@ -47,6 +52,7 @@ training, testing = ConvertTxtToDataset(
     y=(('Batang-pepaya', 0.0), ('Batang-pisang', 1.0)), # Output class, choose two class
     percentage=80 # saperate data into 80% training and 20% testing 
 )
+[...]
 ```
 
 
