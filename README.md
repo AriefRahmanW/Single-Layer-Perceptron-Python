@@ -32,7 +32,22 @@ total class : 3
 
 this dataset is gotten from https://archive.ics.uci.edu/ml/datasets/iris
 
-sepal length | sepal width | petal length | petal width | Class
------------- | ----------- | ------------ | ----------- | -----
-5.1 | 3.5 | 1.4 | 0.2 | Iris-setosa
+No | sepal length | sepal width | petal length | petal width | Class
+-- | ------------ | ----------- | ------------ | ----------- | -----
+1 | 5.1 | 3.5 | 1.4 | 0.2 | Iris-setosa
+
+## Usage Description
+
+```python
+training, testing = ConvertTxtToDataset(
+    filename="dataset_batang.txt"
+).getSinglePerceptronDataset(
+    x=(1,2), # input column
+    compress=10000000, # compress dataset number if number is too large 
+    y=(('Batang-pepaya', 0.0), ('Batang-pisang', 1.0)), # Output class, choose two class
+    percentage=80 # saperate data into 80% training and 20% testing 
+)
+```
+
+
 

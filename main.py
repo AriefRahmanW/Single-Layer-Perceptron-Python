@@ -192,44 +192,19 @@ def main():
 
         weights = [	0.2, 1.0, -1.0 ]  # initial weights specified in problem
         
-
-        # matrix, matrixTest = ConvertTxtToDataset(
-        #     filename="training_data.txt",
-        #     x=(2,3)
-        # ).getSinglePerceptronDataset(
-        #     y=(('Iris-versicolor', 0.0), ('Iris-virginica', 1.0)),
-        #     percentage=70
-        # )
-        # weights = [	0.0, 0.0, 0.0 ]
-        matrix, matrixTest = ConvertTxtToDataset(
-            filename="dataset_batang.txt",
-            x=(2,3),
-            compress=10000000
+        training, testing = ConvertTxtToDataset(
+            filename="dataset_batang.txt"
         ).getSinglePerceptronDataset(
-            y=(('Batang-pepaya', 0.0), ('Batang-pisang', 1.0)),
-            percentage=80
+            x=(1,2), # input column
+            compress=10000000, # compress dataset number if number is too large 
+            y=(('Batang-pepaya', 0.0), ('Batang-pisang', 1.0)), # Output class, choose two class
+            percentage=80 # saperate data into 80% training and 20% testing 
         )
 
-
-    else:  # 2 inputs (including single bias input), 2 weights
-
-        nb_epoch = 10
-
-        # 	Bias 	i1 		y
-        matrix = [	[1.00,	0.08,	1.0],
-                   [1.00,	0.10,	0.0],
-                   [1.00,	0.26,	1.0],
-                   [1.00,	0.35,	0.0],
-                   [1.00,	0.45,	1.0],
-                   [1.00,	0.60,	1.0],
-                   [1.00,	0.70,	0.0],
-                   [1.00,	0.92,	0.0]]
-        weights = [	 0.20,	1.00,   1.00]
-
-    train_weights(matrix, weights=weights, nb_epoch=nb_epoch, l_rate=l_rate,
+    train_weights(training, weights=weights, nb_epoch=nb_epoch, l_rate=l_rate,
                   do_plot=plot_each_epoch, stop_early=stop_early)
 
-    test_weights(matrixTest, weights=weights)
+    test_weights(testing, weights=weights)
 
 
 if __name__ == '__main__':
