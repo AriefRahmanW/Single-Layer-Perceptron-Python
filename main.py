@@ -11,7 +11,6 @@ def predict(inputs, weights):
         activation += i*w
     return 1.0 if activation >= 0.0 else 0.0
 
-
 def plot(matrix, weights=None, title="Prediction Matrix", labels=("","")):
 
     if len(matrix[0]) == 3:  # if 1D inputs, excluding bias and ys
@@ -116,7 +115,6 @@ def plot(matrix, weights=None, title="Prediction Matrix", labels=("","")):
 
 # each matrix row: up to last row = inputs, last row = y (classification)
 
-
 def accuracy(matrix, weights):
     num_correct = 0.0
     preds = []
@@ -131,7 +129,7 @@ def accuracy(matrix, weights):
 # each matrix row: up to last row = inputs, last row = y (classification)
 
 
-def train_weights(matrix, weights, nb_epoch=10, l_rate=1.00, do_plot=False, stop_early=True, verbose=True):
+def train_weights(matrix, weights, nb_epoch=10, l_rate=1.00, do_plot=False, stop_early=True, verbose=True, labels=('0', '1')):
     for epoch in range(nb_epoch):
         cur_acc = accuracy(matrix, weights)
         print("\nEpoch %d \nWeights: " % epoch, weights)
@@ -156,11 +154,11 @@ def train_weights(matrix, weights, nb_epoch=10, l_rate=1.00, do_plot=False, stop
                     sys.stdout.write("%0.5f\n" % (weights[j]))
 
     # if len(matrix[0])==4: plot(matrix,weights) # if 2D inputs, excluding bias
-    plot(matrix, weights, title="Final Epoch", labels=('0', '1'))
+    plot(matrix, weights, title="Final Epoch", labels=labels)
     return weights
 
 
-def test_weights(matrix, weights, l_rate=1.00, verbose=True):
+def test_weights(matrix, weights, l_rate=1.00, verbose=True, labels=('0', '1')):
 
     for i in range(len(matrix)):
         prediction = predict(matrix[i][:-1], weights)  # get predicted classificaion
@@ -175,7 +173,12 @@ def test_weights(matrix, weights, l_rate=1.00, verbose=True):
 
     cur_acc = accuracy(matrix, weights)
     print("Accuracy: ", cur_acc)
-    plot(matrix, weights, title="Testing", labels=('0', '1'))
+    plot(
+        matrix, 
+        weights, 
+        title="Testing", 
+        labels=labels
+    )
     # return weights
 
 
@@ -201,11 +204,17 @@ def main():
             percentage=80 # saperate data into 80% training and 20% testing 
         )
 
-    train_weights(training, weights=weights, nb_epoch=nb_epoch, l_rate=l_rate,
-                  do_plot=plot_each_epoch, stop_early=stop_early)
+    train_weights(
+        training, 
+        weights=weights, 
+        nb_epoch=nb_epoch, 
+        l_rate=l_rate,
+        do_plot=plot_each_epoch, 
+        stop_early=stop_early,
+         labels=('Batang-pepaya', 'Batang-pisang')
+    )
 
-    test_weights(testing, weights=weights)
-
+    test_weights(testing, weights=weights, labels=('Batang-pepaya', 'Batang-pisang'))
 
 if __name__ == '__main__':
     main()
