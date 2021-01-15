@@ -185,7 +185,7 @@ def main():
     l_rate = 1.0
     plot_each_epoch = False
     stop_early = True
-
+    prev_weight = 0
     part_A = True
 
     if part_A: 
@@ -200,6 +200,8 @@ def main():
 
         weights = [round(random.uniform(-1.0, 2.0), 2) for _ in range(len(training[0][:-1]))]
 
+        
+
     weights, epoch = train_weights(
         training, 
         weights=weights, 
@@ -210,6 +212,9 @@ def main():
         labels=('Batang-pepaya', 'Batang-pisang')
     )
 
+    prev_weight =  [0.22, 0.96, 1.44, -0.43, 0.0, 1.54, 1.72, -0.25, -0.92, 0.83, -0.77, -0.64, 1.29, 1.62, 1.39, -0.44, 0.92, 1.37, 0.96, -0.05, 0.08, -0.6, 0.59, 1.76, -0.55]
+
+    print("inisial weight : ", prev_weight)
     print("weight : ", weights)
     print("epoch : ", epoch)
 
