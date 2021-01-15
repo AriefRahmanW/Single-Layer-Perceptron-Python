@@ -4,6 +4,7 @@ import sys
 from matplotlib import pyplot as plt
 import numpy as np
 from convert import ConvertTxtToDataset
+import random
 
 def predict(inputs, weights):
     activation = 0.0
@@ -80,7 +81,6 @@ def plot(matrix, weights=None, title="Prediction Matrix", labels=("","")):
             for cur_y in np.arange(map_min, map_max, y_res):
                 for cur_x in np.arange(map_min, map_max, x_res):
                     zs.append(predict([1.0, cur_x, cur_y], weights))
-            # assert len(zs) == (len(xs) * len(ys))
             xs, ys = np.meshgrid(xs, ys)
             zs = np.array(zs)
             zs = zs.reshape(xs.shape)
@@ -128,7 +128,6 @@ def accuracy(matrix, weights):
 
 # each matrix row: up to last row = inputs, last row = y (classification)
 
-
 def train_weights(matrix, weights, nb_epoch=10, l_rate=1.00, do_plot=False, stop_early=True, verbose=True, labels=('0', '1')):
     for epoch in range(nb_epoch):
         cur_acc = accuracy(matrix, weights)
@@ -153,9 +152,8 @@ def train_weights(matrix, weights, nb_epoch=10, l_rate=1.00, do_plot=False, stop
                 if verbose:
                     sys.stdout.write("%0.5f\n" % (weights[j]))
 
-    # if len(matrix[0])==4: plot(matrix,weights) # if 2D inputs, excluding bias
-    plot(matrix, weights, title="Final Epoch", labels=labels)
-    return weights
+    # plot(matrix, weights, title="Final Epoch", labels=labels)
+    return weights, epoch
 
 
 def test_weights(matrix, weights, l_rate=1.00, verbose=True, labels=('0', '1')):
@@ -173,14 +171,13 @@ def test_weights(matrix, weights, l_rate=1.00, verbose=True, labels=('0', '1')):
 
     cur_acc = accuracy(matrix, weights)
     print("Accuracy: ", cur_acc)
-    plot(
-        matrix, 
-        weights, 
-        title="Testing", 
-        labels=labels
-    )
+    # plot(
+    #     matrix, 
+    #     weights, 
+    #     title="Testing", 
+    #     labels=labels
+    # )
     # return weights
-
 
 def main():
 
@@ -191,28 +188,30 @@ def main():
 
     part_A = True
 
-    if part_A:  # 3 inputs (including single bias input), 3 weights
+    if part_A: 
 
-        weights = [	0.2, 1.0, -1.0 ]  # initial weights specified in problem
-        
-        training, testing = ConvertTxtToDataset(
-            filename="dataset_batang.txt"
-        ).getSinglePerceptronDataset(
-            x=(1,2), # input column
-            compress=10000000, # compress dataset number if number is too large 
-            y=(('Batang-pepaya', 0.0), ('Batang-pisang', 1.0)), # Output class, choose two class
-            percentage=80 # saperate data into 80% training and 20% testing 
+        training = ConvertTxtToDataset("batang/training.txt").getSinglePerceptronDataset(
+            y=(('Batang-pisang', 0.0), ('Batang-jambu', 1.0))
         )
 
-    train_weights(
+        testing = ConvertTxtToDataset("batang/testing.txt").getSinglePerceptronDataset(
+            y=(('Batang-pisang', 0.0), ('Batang-jambu', 1.0))
+        )
+
+        weights = [round(random.uniform(-1.0, 2.0), 2) for _ in range(len(training[0][:-1]))]
+
+    weights, epoch = train_weights(
         training, 
         weights=weights, 
         nb_epoch=nb_epoch, 
         l_rate=l_rate,
         do_plot=plot_each_epoch, 
         stop_early=stop_early,
-         labels=('Batang-pepaya', 'Batang-pisang')
+        labels=('Batang-pepaya', 'Batang-pisang')
     )
+
+    print("weight : ", weights)
+    print("epoch : ", epoch)
 
     test_weights(testing, weights=weights, labels=('Batang-pepaya', 'Batang-pisang'))
 
