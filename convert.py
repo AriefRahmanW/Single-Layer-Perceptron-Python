@@ -19,7 +19,7 @@ class ConvertTxtToDataset:
     def getSinglePerceptronDataset( # mengubah dataset agar sesuai format single layer perceptron
         self,
         compress=1,
-        y=(('Iris-setosa', 0.0), ('Iris-versicolor', 1.0))
+        y=(('Batang-pisang', 0.0), ('Batang-jambu', 1.0))
         ):
 
         converted_data = []
