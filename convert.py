@@ -2,7 +2,7 @@ class ConvertTxtToDataset:
 
     def __init__(
         self,
-        filename="dataset_iris.txt"
+        filename=""
         ):
 
         read_data = open(filename, "r").read()
