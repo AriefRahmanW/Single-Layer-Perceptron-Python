@@ -9,18 +9,6 @@ total class : 3
 - Batang-jambu = 25 data
 - Batang-pepaya = 25 data
 
-
-### dataset_iris.txt
-
-total data : 150 <br />
-total class : 3
-- Iris-setosa = 50 data
-- Iris-versicolor = 50 data
-- Iris-virginia = 50 data
-
-this dataset is gotten from https://archive.ics.uci.edu/ml/datasets/iris
-
-
 ## Get Started
 
 install depedencies...
