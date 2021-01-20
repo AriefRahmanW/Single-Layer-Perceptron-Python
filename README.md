@@ -9,13 +9,9 @@ total class : 3
 - Batang-jambu = 25 data
 - Batang-pepaya = 25 data
 
-this dataset is gotten by using GLCM(texture analyst method)
-
-0 deg | 45 deg | 90 deg | 135 deg | Class
------ | ------ | ------ | ------- | -----
-11750114.13 | 11618426.39 | 18167705.75 | 11527839.21 | Batang-pepaya
 
 ### dataset_iris.txt
+
 total data : 150 <br />
 total class : 3
 - Iris-setosa = 50 data
@@ -24,9 +20,6 @@ total class : 3
 
 this dataset is gotten from https://archive.ics.uci.edu/ml/datasets/iris
 
-No | sepal length | sepal width | petal length | petal width | Class
--- | ------------ | ----------- | ------------ | ----------- | -----
-1 | 5.1 | 3.5 | 1.4 | 0.2 | Iris-setosa
 
 ## Get Started
 
@@ -38,75 +31,11 @@ pip install -r requirements.txt
 change this part as you wish...
 
 ```python
-training, testing = ConvertTxtToDataset(
-    filename="dataset_batang.txt"
-).getSinglePerceptronDataset(
-    x=(1,2), # input column
-    compress=10000000, # compress dataset number if number is too large 
-    y=(('Batang-pepaya', 0.0), ('Batang-pisang', 1.0)), # Output class, choose two class
-    percentage=80 # saperate data into 80% training and 20% testing 
+training = ConvertTxtToDataset("batang/training.txt").getSinglePerceptronDataset(
+    y=(('Batang-pisang', 0.0), ('Batang-pepaya', 1.0)) # customize with datasete class
 )
-```
 
-Your data will be like this <br/>
-
-**training data**
-
-```
-Bias  x1    x2    y
-(1.0, 1.18, 1.82, 0.0)
-(1.0, 3.76, 8.12, 0.0)
-(1.0, 3.66, 8.04, 0.0)
-(1.0, 1.22, 2.08, 0.0)
-(1.0, 2.29, 4.03, 0.0)
-(1.0, 2.71, 4.6, 0.0)
-(1.0, 1.55, 3.6, 0.0)
-(1.0, 3.03, 7.02, 0.0)
-(1.0, 4.15, 7.29, 0.0)
-(1.0, 0.99, 1.53, 0.0)
-(1.0, 1.35, 1.86, 0.0)
-(1.0, 1.09, 1.67, 0.0)
-(1.0, 1.22, 2.07, 0.0)
-(1.0, 1.26, 1.8, 0.0)
-(1.0, 1.69, 3.18, 0.0)
-(1.0, 2.14, 3.84, 0.0)
-(1.0, 3.1, 6.94, 0.0)
-(1.0, 2.15, 3.46, 0.0)
-(1.0, 4.28, 6.38, 0.0)
-(1.0, 1.69, 2.62, 0.0)
-(1.0, 2.57, 2.71, 1.0)
-(1.0, 3.46, 5.29, 1.0)
-(1.0, 2.34, 1.83, 1.0)
-(1.0, 4.31, 5.43, 1.0)
-(1.0, 3.88, 5.15, 1.0)
-(1.0, 4.11, 6.07, 1.0)
-(1.0, 3.16, 3.49, 1.0)
-(1.0, 3.6, 4.58, 1.0)
-(1.0, 1.79, 1.81, 1.0)
-(1.0, 2.21, 2.41, 1.0)
-(1.0, 1.33, 1.39, 1.0)
-(1.0, 1.49, 1.54, 1.0)
-(1.0, 1.5, 1.42, 1.0)
-(1.0, 2.16, 2.03, 1.0)
-(1.0, 3.49, 4.38, 1.0)
-(1.0, 1.77, 1.84, 1.0)
-(1.0, 1.24, 1.53, 1.0)
-(1.0, 1.99, 2.08, 1.0)
-(1.0, 1.73, 2.13, 1.0)
-(1.0, 1.89, 2.02, 1.0)
-```
-
-**testing data**
-```
-Bias  x1    x2    y
-(1.0, 2.88, 6.74, 0.0)
-(1.0, 1.12, 1.87, 0.0)
-(1.0, 1.43, 2.07, 0.0)
-(1.0, 1.22, 1.43, 0.0)
-(1.0, 1.95, 3.38, 0.0)
-(1.0, 4.09, 4.48, 1.0)
-(1.0, 4.62, 4.94, 1.0)
-(1.0, 3.07, 4.33, 1.0)
-(1.0, 2.72, 3.18, 1.0)
-(1.0, 2.98, 3.39, 1.0)
+testing = ConvertTxtToDataset("batang/testing.txt").getSinglePerceptronDataset(
+    y=(('Batang-pisang', 0.0), ('Batang-pepaya', 1.0)) # customize with datasete class
+)
 ```
